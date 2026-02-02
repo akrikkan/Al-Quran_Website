@@ -65,7 +65,7 @@ export default function RootLayout({
 
 
         {/* 🌙 Theme Provider */}
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider>
 
            <CustomCursor />
 
