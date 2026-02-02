@@ -2,9 +2,18 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [hideTop, setHideTop] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+useEffect(() => {
+  document.body.style.overflow = mobileOpen ? "hidden" : "";
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [mobileOpen]);
+
 
   useEffect(() => {
     const onScroll = () => {
@@ -13,7 +22,6 @@ export default function Header() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, setTheme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
@@ -265,61 +273,75 @@ export default function Header() {
       </nav>
 
       {/* ================= MOBILE MENU ================= */}
-      {/* ================= MOBILE MENU ================= */}
-<div
-  className={`fixed inset-0 z-[9999] lg:hidden transition ${
-    mobileOpen ? "visible" : "invisible"
-  }`}
->
-  {/* Overlay */}
-  <div
-    className={`absolute inset-0 bg-black/70 backdrop-blur-[1px] transition-opacity duration-300 ${
-      mobileOpen ? "opacity-100" : "opacity-0"
-    }`}
-    onClick={() => setMobileOpen(false)}
-  />
-
-  {/* Drawer */}
-  <div
-    className={`absolute right-0 top-0 h-full w-[280px] bg-white dark:bg-gray-900 shadow-xl transform transition-transform duration-300 ${
-      mobileOpen ? "translate-x-0" : "translate-x-full"
-    }`}
-  >
-    {/* Header */}
-    <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
-      <img src="/images/logo.svg" alt="Logo" className="w-[140px]" />
-      <button
+      <AnimatePresence>
+  {mobileOpen && (
+    <motion.div
+      className="fixed inset-0 z-[9999] lg:hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {/* Overlay */}
+      <motion.div
+        className="absolute inset-0 bg-black/70 backdrop-blur-[1px]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
         onClick={() => setMobileOpen(false)}
-        className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white"
-      >
-        ✕
-      </button>
-    </div>
+      />
 
-    {/* Menu */}
-    <ul className="p-4 space-y-4 font-semibold">
-      {[
-        ["Home", "/"],
-        ["About", "/about"],
-        ["Service", "/services"],
-        ["Courses", "/courses"],
-        ["Blog", "/blog"],
-        ["Contact", "/contact"],
-      ].map(([label, href]) => (
-        <li key={href}>
-          <Link
-            href={href}
+      {/* Drawer */}
+      <motion.div
+        className="absolute right-0 top-0 h-full w-[280px] bg-white dark:bg-gray-900 shadow-xl"
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
+          <img src="/images/logo.svg" alt="Logo" className="w-[140px]" />
+          <button
             onClick={() => setMobileOpen(false)}
-            className="!text-green-900 dark:!text-green-400 hover:!text-green-700 font-bold !no-underline"
+            className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white"
           >
-            🔲 {label}
-          </Link>
-          <hr className="border-gray-900 dark:border-gray-700 mt-4" />
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
+            ✕
+          </button>
+        </div>
+
+        {/* Menu */}
+        <ul className="p-4 space-y-4 font-semibold">
+          {[
+            ["Home", "/"],
+            ["About", "/about"],
+            ["Service", "/services"],
+            ["Courses", "/courses"],
+            ["Blog", "/blog"],
+            ["Contact", "/contact"],
+          ].map(([label, href], index) => (
+            <motion.li
+              key={href}
+              initial={{ x: 30, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: index * 0.05 }}
+            >
+              <Link
+                href={href}
+                onClick={() => setMobileOpen(false)}
+                className="!text-green-900 dark:!text-green-400 hover:!text-green-700 font-bold !no-underline"
+              >
+                🔲 {label}
+              </Link>
+              <hr className="border-gray-900 dark:border-gray-700 mt-4" />
+            </motion.li>
+          ))}
+        </ul>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
 
     </header>
   );
