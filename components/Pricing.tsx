@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion,Variants } from "framer-motion";
 
 const pricingData = [
   { price: 32, title: "2 Classes Per Week", students: "2,000+", classes: 8 },
@@ -12,7 +12,7 @@ const pricingData = [
 /* =====================
    Framer Motion Variants
 ===================== */
-const containerVariants = {
+const containerVariants : Variants = {
   hidden: {},
   show: {
     transition: {
@@ -21,7 +21,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants : Variants = {
   hidden: {
     x: -100,
     opacity: 0,

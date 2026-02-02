@@ -3,8 +3,12 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+
 
 export default function Header() {
+  const pathname = usePathname();
+
   const [hideTop, setHideTop] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 useEffect(() => {

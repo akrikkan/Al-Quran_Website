@@ -1,11 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion,Variants } from "framer-motion";
 
 /* =====================
    Framer Motion Variants
 ===================== */
-const containerVariants = {
+const containerVariants : Variants = {
   hidden: {},
   show: {
     transition: {
@@ -14,7 +14,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants : Variants = {
   hidden: {
     x: -100,
     opacity: 0,
