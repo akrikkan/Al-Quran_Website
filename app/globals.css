@@ -1600,6 +1600,8 @@ body {
   color: #fff;
 }
 
+
+
 /* Background variations */
 
 
@@ -1614,6 +1616,64 @@ body {
 .bg-cream {
   background: #f6f6ec;
 }
+
+
+/* ===============================
+   MOBILE VIEW FIX (≤575px)
+================================ */
+@media (max-width: 575px) {
+
+  /* Section padding */
+  .institute-one {
+    padding-top: 70px;
+    padding-bottom: 50px;
+  }
+
+  /* Card */
+  .institute-card {
+    min-height: auto;
+    padding: 22px 18px 20px; /* left-right padding fixed */
+    border-radius: 28px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  /* Icon circle smaller */
+  .icon-circle {
+    width: 72px;
+    height: 72px;
+    border-width: 1.5px;
+  }
+
+  /* Inner square smaller */
+  .icon-square {
+    width: 22px;
+    height: 22px;
+    border-width: 1.5px;
+  }
+
+  /* Title smaller */
+  .card-title {
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  /* Paragraph smaller */
+  .card-text {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* Hover image spacing */
+  .hover-bismillah {
+    top: 18px;
+    height: 48px;
+    background-size: contain;
+  }
+}
+
 
 /* SECTION */
 .testimonial-section {
