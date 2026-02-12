@@ -57,7 +57,7 @@ export default function EventDetailsPage() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-16 bg-gray-100 dark:bg-gray-900 font-poppins">
+    <section className="py-16  font-poppins">
       <div className="max-w-6xl mx-auto px-4 space-y-16">
 
         {/* HERO IMAGE */}
