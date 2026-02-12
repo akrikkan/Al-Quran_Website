@@ -82,7 +82,7 @@ const cardVariants : Variants = {
 
 export default function EventsGrid() {
   return (
-    <section className="py-20 bg-gray-100 dark:bg-gray-900">
+    <section className="py-20 ">
       <div className="container mx-auto px-4">
 
         {/* Title */}
