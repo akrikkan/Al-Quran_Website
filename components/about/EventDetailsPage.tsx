@@ -271,9 +271,6 @@ export default function EventDetailsPage() {
     /* Height */
     min-h-[160px] sm:min-h-[180px] md:min-h-[200px]
 
-    /* Style */
-    bg-gradient-to-b from-gray-100 to-gray-200
-    dark:from-gray-800 dark:to-gray-700
 
     /* Shape */
     rounded-t-[28px] sm:rounded-t-[32px] md:rounded-t-[40px]
