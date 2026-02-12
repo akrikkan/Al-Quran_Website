@@ -91,7 +91,7 @@ export default function EventDetailsPage() {
               Learning Quranic Arabic For Beginners
             </h1>
 
-            <div className="flex items-center gap-4 bg-gray-200 dark:bg-gray-800 p-5 rounded-xl w-fit shadow-sm">
+            <div className="flex items-center gap-4  p-5 rounded-xl w-fit shadow-sm">
               <span className="font-semibold">Upcoming Event Price</span>
               <span className="bg-black text-white px-6 py-2 rounded font-bold">
                 $12.00
