@@ -1,16 +1,18 @@
 "use client";
 import InnerHero from "@/components/InnerHero";
-import NewSection from "@/components/blog/NewSections";
+import EventsGrid from "@/components/about/EventsGrid";
 import CTASection from "@/components/CTASection";
 
-export default function BlogPage() {
+
+
+export default function EventsPage() {
   return (
     <>
       <InnerHero
-        title="Blog"
-        breadcrumb="Home - Blogs"
+        title="About"
+        breadcrumb="Home - Events"
       />
-        <NewSection />
+        <EventsGrid />
         <CTASection />
     </>
   );

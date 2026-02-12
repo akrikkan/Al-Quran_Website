@@ -1,16 +1,16 @@
 "use client";
 import InnerHero from "@/components/InnerHero";
-import NewSection from "@/components/blog/NewSections";
+import BlogDetails from "@/components/blog/BlogDetails";
 import CTASection from "@/components/CTASection";
 
-export default function BlogPage() {
+export default function DetailPage() {
   return (
     <>
       <InnerHero
         title="Blog"
-        breadcrumb="Home - Blogs"
+        breadcrumb="Blogs-Details"
       />
-        <NewSection />
+        <BlogDetails />
         <CTASection />
     </>
   );

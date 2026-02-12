@@ -11,6 +11,11 @@ const config: Config = {
 
   theme: {
     extend: {
+      animation: {
+    'spin-slow': 'spin 15s linear infinite',
+    'bounce-slow': 'bounce 6s infinite',
+    },
+      
       colors: {
         primary: "#2ea873",
       },

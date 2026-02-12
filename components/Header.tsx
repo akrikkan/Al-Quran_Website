@@ -11,6 +11,11 @@ export default function Header() {
 
   const [hideTop, setHideTop] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+
+  const toggleMenu = (menu: string) => {
+    setOpenMenu(openMenu === menu ? null : menu);
+  };
 useEffect(() => {
   document.body.style.overflow = mobileOpen ? "hidden" : "";
   return () => {
@@ -166,11 +171,8 @@ useEffect(() => {
                       <Link href="/services" className="block hover:text-green-600 dark:hover:text-green-400 !text-green-900 dark:!text-green-200 !font-bold !text-lg !no-underline">
                         Services
                       </Link>
-                      <Link href="/service-detail" className="block !no-underline hover:text-green-600 dark:hover:text-green-400 !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
-                        Service 1
-                      </Link>
-                      <Link href="/service-detail" className="block !no-underline hover:text-green-600 dark:hover:text-green-400 !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
-                        Service 2
+                      <Link href="/services/details" className="block !no-underline hover:text-green-600 dark:hover:text-green-400 !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
+                        Services 1
                       </Link>
                     </div>
                   </div>
@@ -186,12 +188,9 @@ useEffect(() => {
                       <Link href="/courses" className="block hover:text-green-600 dark:hover:text-green-400 !no-underline transition !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
                         Courses
                       </Link>
-                      <Link href="/course-detail" className="block !no-underline hover:text-green-600 dark:hover:text-green-400 transition !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
+                      <Link href="/courses/course1" className="block !no-underline hover:text-green-600 dark:hover:text-green-400 transition !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
                          Courses1
-                      </Link>
-                      <Link href="/course-detail" className="block !no-underline hover:text-green-600 dark:hover:text-green-400 transition !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
-                         Courses2
-                      </Link>       
+                      </Link>      
                     </div>
                   </div>
                 </li>
@@ -206,10 +205,10 @@ useEffect(() => {
                       <Link href="/blog" className="block hover:text-green-600 dark:hover:text-green-400 !no-underline transition !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
                         Our Blog
                       </Link>
-                      <Link href="/blog-classic" className="block hover:text-green-600 dark:hover:text-green-400 transition !no-underline !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
+                      <Link href="/blog/class" className="block hover:text-green-600 dark:hover:text-green-400 transition !no-underline !text-green-900 dark:!text-green-200 !font-bold !text-lg font-poppins">
                         Blog Class
                       </Link>
-                      <Link href="/blog-detail" className="block hover:text-green-600 dark:hover:text-green-400 !no-underline transition !text-green-900 dark:!text-green-200 !font-bold !text-lg !font-poppins">
+                      <Link href="/blog/detail" className="block hover:text-green-600 dark:hover:text-green-400 !no-underline transition !text-green-900 dark:!text-green-200 !font-bold !text-lg !font-poppins">
                         Blog Detail
                       </Link>
                     </div>
@@ -228,6 +227,43 @@ useEffect(() => {
                       <Link href="/about" className="block !text-green-900 dark:text-green-200 font-semibold !no-underline hover:text-green-600 dark:hover:text-green-400 transition !font-bold !text-lg font-poppins">
                         About Us
                       </Link>
+                      <Link href="/about/price" className="block !text-green-900 dark:text-green-200 font-semibold !no-underline hover:text-green-600 dark:hover:text-green-400 transition !font-bold !text-lg font-poppins">
+                        Price
+                      </Link>
+                      {/* EVENTS with submenu */}
+                  <div className="relative group/item">
+
+                    {/* Events row */}
+                    <div className="flex justify-between items-center cursor-pointer text-green-900 dark:text-green-200 font-bold text-lg hover:text-green-600 transition">
+                      EVENTS
+                      <span className="ml-2">›</span>
+                    </div>
+
+                    {/* Submenu */}
+                    <div className="absolute top-0 left-full hidden group-hover/item:block z-50">
+
+                      {/* Invisible bridge to prevent hover gap */}
+                      <div className="absolute left-[-20px] top-0 w-5 h-full"></div>
+
+                      <div className="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-4 w-48 space-y-3">
+                        <Link
+                          href="/about/events"
+                          className="block text-lg !text-green-900 dark:text-green-200 !no-underline font-bold hover:text-green-600"
+                        >
+                          Events
+                        </Link>
+
+                        <Link
+                          href="/about/events/details"
+                          className="block text-lg !text-green-900 dark:text-green-200 !no-underline font-bold hover:text-green-600"
+                        >
+                          Details
+                        </Link>
+                      </div>
+
+                    </div>
+                  </div>
+
                     </div>
                   </div>
                 </li>
@@ -276,8 +312,8 @@ useEffect(() => {
         </div>
       </nav>
 
-      {/* ================= MOBILE MENU ================= */}
-      <AnimatePresence>
+     {/* ================= MOBILE MENU ================= */}
+<AnimatePresence>
   {mobileOpen && (
     <motion.div
       className="fixed inset-0 z-[9999] lg:hidden"
@@ -287,7 +323,7 @@ useEffect(() => {
     >
       {/* Overlay */}
       <motion.div
-        className="absolute inset-0 bg-black/70 backdrop-blur-[1px]"
+        className="absolute inset-0 bg-black/70"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -297,14 +333,14 @@ useEffect(() => {
 
       {/* Drawer */}
       <motion.div
-        className="absolute right-0 top-0 h-full w-[280px] bg-white dark:bg-gray-900 shadow-xl"
+        className="absolute right-0 top-0 h-full w-[280px] bg-white dark:bg-gray-900 shadow-xl overflow-y-auto"
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 border-b">
           <img src="/images/logo.svg" alt="Logo" className="w-[140px]" />
           <button
             onClick={() => setMobileOpen(false)}
@@ -314,33 +350,110 @@ useEffect(() => {
           </button>
         </div>
 
-        {/* Menu */}
-        <ul className="p-4 space-y-4 font-semibold">
-          {[
-            ["Home", "/"],
-            ["About", "/about"],
-            ["Service", "/services"],
-            ["Courses", "/courses"],
-            ["Blog", "/blog"],
-            ["Contact", "/contact"],
-          ].map(([label, href], index) => (
-            <motion.li
-              key={href}
-              initial={{ x: 30, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: index * 0.05 }}
-            >
-              <Link
-                href={href}
-                onClick={() => setMobileOpen(false)}
-                className="!text-green-900 dark:!text-green-400 hover:!text-green-700 font-bold !no-underline"
-              >
-                🔲 {label}
-              </Link>
-              <hr className="border-gray-900 dark:border-gray-700 mt-4" />
-            </motion.li>
-          ))}
-        </ul>
+        {/* Menu List */}
+        {[
+          {
+            name: "Home",
+            href: "/",
+          },
+          {
+            name: "About",
+            children: [
+              { label: "🔲 About Us", href: "/about" },
+              { label: "🔲 Price", href: "/about/price" },
+              { label: "🔲 Events", href: "/about/events" },
+              { label: "🔲 Event Details", href: "/about/events/details" },
+            ],
+          },
+          {
+            name: "Service",
+            children: [
+              { label: "🔲 Services", href: "/services" },
+              { label: "🔲 Service Details", href: "/services/details" },
+            ],
+          },
+          {
+            name: "Courses",
+            children: [
+              { label: "🔲 All Courses", href: "/courses" },
+              { label: "🔲 Course Details", href: "/courses/course1" },
+            ],
+          },
+          {
+            name: "Blog",
+            children: [
+              { label: "🔲 Our Blog", href: "/blog" },
+              { label: "🔲 Blog Class", href: "/blog/class" },
+              { label: "🔲 Blog Detail", href: "/blog/detail" },
+            ],
+          },
+          {
+            name: "Contact",
+            href: "/contact",
+          },
+        ].map((menu, index) => (
+          <motion.div
+            key={menu.name}
+            className="border-b"
+            initial={{ x: 40, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: index * 0.05 }}
+          >
+            {/* Main Row */}
+            <div className="flex items-center justify-between px-4 py-4">
+              {/* Left */}
+              <div className="flex items-center gap-2">
+                <span className="text-green-700">🔲</span>
+
+                {menu.href ? (
+                  <Link
+                    href={menu.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-bold !text-green-900 dark:!text-green-400 !no-underline"
+                  >
+                    {menu.name}
+                  </Link>
+                ) : (
+                  <span className="font-bold !text-green-900 dark:!text-green-400">
+                    {menu.name}
+                  </span>
+                )}
+              </div>
+
+              {/* Toggle Button */}
+              {menu.children && (
+                <button
+                  onClick={() => toggleMenu(menu.name)}
+                  className="text-xl font-bold text-green-900"
+                >
+                  {openMenu === menu.name ? "−" : "+"}
+                </button>
+              )}
+            </div>
+
+            {/* Sub Menu */}
+            {menu.children && openMenu === menu.name && (
+              <div className="bg-gray-50 dark:bg-gray-800 px-6 pb-2">
+                {menu.children.map((sub, i) => (
+                  <div key={sub.href}>
+                    <Link
+                      href={sub.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block py-3 text-sm !text-green-900 dark:text-gray-300 hover:text-green-600 !no-underline"
+                    >
+                      {sub.label}
+                    </Link>
+
+                    {/* Divider except last */}
+                    {i !== menu.children.length - 1 && (
+                      <hr className="border-gray-300 dark:border-gray-700" />
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        ))}
       </motion.div>
     </motion.div>
   )}

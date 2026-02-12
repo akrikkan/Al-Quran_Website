@@ -758,6 +758,20 @@ body {
 
 }
 
+/* Slow rotation animation */
+.spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
  
   
@@ -769,6 +783,22 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scroll-track {
+  display: flex;
+  width: max-content;
+  animation: scrollLeft 25s linear infinite;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 
 /* ===== SERVICE SECTION ===== */
 .service-one {

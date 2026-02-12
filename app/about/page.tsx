@@ -1,11 +1,11 @@
 "use client";
 
-export default function AboutPage() {
+/*export default function AboutPage() {
   return (
     <section className="py-20 bg-white">
       <div className="container">
 
-        {/* Page Title */}
+        {/* Page Title *//*}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl fw-bold !text-green-900 mb-3">
             About Us
@@ -15,7 +15,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Content */}
+        {/* Content *//*}
         <div className="max-w-3xl mx-auto text-gray-700 space-y-4 leading-relaxed">
 
           <p>
@@ -41,4 +41,33 @@ export default function AboutPage() {
       </div>
     </section>
   );
+}/* */
+import InnerHero from "@/components/InnerHero";
+import Welcome from "@/components/about/Welcome";
+import Institute from "@/components/Institute";
+import Students from "@/components/Students";
+import Scholars from "@/components/about/Scholars";
+import Pricing from "@/components/Pricing";
+import Testimonials from "@/components/Testimonials";
+import CTASection from "@/components/CTASection";
+
+
+export default function AboutPage() {
+  return (
+    <>
+      <InnerHero
+        title="About"
+        breadcrumb="Home - About Us"
+      />
+
+      <Welcome />
+      <Institute />
+      <Students />
+      <Scholars />
+      <Pricing />
+      <Testimonials />
+      <CTASection />
+    </>
+  );
 }
+
