@@ -433,7 +433,7 @@ useEffect(() => {
 
             {/* Sub Menu */}
             {menu.children && openMenu === menu.name && (
-              <div className="bg-gray-50 dark:bg-gray-800 px-6 pb-2">
+              <div className=" px-6 pb-2">
                 {menu.children.map((sub, i) => (
                   <div key={sub.href}>
                     <Link
